@@ -10,8 +10,8 @@ import (
 	_ "github.com/viafcccy/garden-be/boot"
 
 	entity "github.com/viafcccy/garden-be/domain/entity/user"
+	"github.com/viafcccy/garden-be/domain/irepository/user/mock"
 	repositoryimpl "github.com/viafcccy/garden-be/infrastructure/repository/repositoryimpl/user"
-	"github.com/viafcccy/garden-be/irepository/user/mock"
 	_ "github.com/viafcccy/garden-be/test"
 )
 
