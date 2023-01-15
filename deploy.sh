@@ -22,7 +22,7 @@ docker build -t garden_be .
 # depoly
 echo "-------------------- deploying --------------------"
 docker rm -f garden_be
-docker run -d -p 8018:8018 --name garden_be --restart=no --link mysql garden_be
+docker run -d -p 8018:8018 --name garden_be --restart=no --link mysql --net garden-backend-network garden_be
 
 # display
 echo "Checking health..."

@@ -8,9 +8,10 @@ server:
 mysql:
   username: "root"
   password: "123456"
-  dbHost: "127.0.0.1"
+  # if run in container using 'container name or ip'
+  dbHost: "mysql"
   dbPort: 3306
-  dbName: "test"
+  dbName: "app_db"
 
 # Log.
 log:
