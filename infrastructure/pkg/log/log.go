@@ -1,6 +1,7 @@
 package log
 
 import (
+	"log"
 	"sync"
 
 	"github.com/sirupsen/logrus"
@@ -49,6 +50,7 @@ func (l *serverLog) Infof(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Infof(format, args...)
+	log.Printf(format, args...)
 }
 
 // Infoln 普通信息
@@ -57,6 +59,7 @@ func (l *serverLog) Infoln(args ...interface{}) {
 		return
 	}
 	l.logger.Infoln(args...)
+	log.Println(args...)
 }
 
 // Warnf 警告信息
@@ -65,6 +68,7 @@ func (l *serverLog) Warnf(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Warnf(format, args...)
+	log.Printf(format, args...)
 }
 
 // Warnln 警告信息
@@ -73,6 +77,7 @@ func (l *serverLog) Warnln(args ...interface{}) {
 		return
 	}
 	l.logger.Warnln(args...)
+	log.Println(args...)
 }
 
 // Errorf 错误信息
@@ -81,6 +86,7 @@ func (l *serverLog) Errorf(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Errorf(format, args...)
+	log.Printf(format, args...)
 }
 
 // Errorln 错误信息
@@ -89,6 +95,7 @@ func (l *serverLog) Errorln(args ...interface{}) {
 		return
 	}
 	l.logger.Errorln(args...)
+	log.Println(args...)
 }
 
 // Debugf 调试信息
@@ -97,6 +104,7 @@ func (l *serverLog) Debugf(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Debugf(format, args...)
+	log.Printf(format, args...)
 }
 
 // Debugln 调试信息
@@ -105,6 +113,7 @@ func (l *serverLog) Debugln(args ...interface{}) {
 		return
 	}
 	l.logger.Debugln(args...)
+	log.Println(args...)
 }
 
 // Tracef 跟踪信息
@@ -113,6 +122,7 @@ func (l *serverLog) Tracef(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Tracef(format, args...)
+	log.Printf(format, args...)
 }
 
 // Traceln 跟踪信息
@@ -121,6 +131,7 @@ func (l *serverLog) Traceln(args ...interface{}) {
 		return
 	}
 	l.logger.Traceln(args...)
+	log.Println(args...)
 }
 
 // Fatalf 致命错误
@@ -129,6 +140,7 @@ func (l *serverLog) Fatalf(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Fatalf(format, args...)
+	log.Printf(format, args...)
 }
 
 // Fatalln 致命错误
@@ -137,6 +149,7 @@ func (l *serverLog) Fatalln(args ...interface{}) {
 		return
 	}
 	l.logger.Fatalln(args...)
+	log.Println(args...)
 }
 
 // Panicf 恐慌错误
@@ -145,6 +158,7 @@ func (l *serverLog) Panicf(format string, args ...interface{}) {
 		return
 	}
 	l.logger.Panicf(format, args...)
+	log.Printf(format, args...)
 }
 
 // Panicln 恐慌错误
@@ -153,6 +167,7 @@ func (l *serverLog) Panicln(args ...interface{}) {
 		return
 	}
 	l.logger.Panicln(args...)
+	log.Println(args...)
 }
 
 func initLogger() {
@@ -178,7 +193,7 @@ func initLogger() {
 		MaxSize:    conf.Log.MaxSize,    // 日志文件大小，单位是 MB
 		MaxBackups: conf.Log.MaxBackups, // 最大过期日志保留个数
 		MaxAge:     conf.Log.MaxAge,     // 保留过期文件最大时间，单位 天
-		Compress:   true,                // 是否压缩日志，默认是不压缩。这里设置为true，压缩日志
+		Compress:   true,                // 是否压缩日志，默认是不压缩。这里设置为 true，压缩日志
 	}
 
 	logHandle.logger.SetOutput(loggerOut)

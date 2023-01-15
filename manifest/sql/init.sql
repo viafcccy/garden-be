@@ -1,3 +1,6 @@
+-- 创建数据库
+CREATE DATABASE `app_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
 CREATE TABLE `user`
 (
     `id`         int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'User ID',

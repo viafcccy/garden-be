@@ -11,5 +11,5 @@ import (
 func init() {
 	global.Gconfig = config.NewConfig() // 初始化全局配置
 	global.GLog = log.NewLogger()       // 初始化日志
-	global.GDB = mysql.NewDB()          // 初始化mysql
+	global.GDB = mysql.NewDB()          // 初始化 mysql
 }
