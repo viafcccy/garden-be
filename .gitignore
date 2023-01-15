@@ -51,4 +51,6 @@ Temporary Items
 
 # others
 tmp
+bin
 garden-be-exe-file
+manifest/config/config_pro.yaml

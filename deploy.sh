@@ -2,7 +2,9 @@
 
 # code build
 echo "-------------------- code building --------------------"
-go build -v -n -o ./docker/garden-be-exe-file
+go build -o ./bin/garden-be-exe-file
+rm -f ./docker/garden-be-exe-file 
+mv ./bin/garden-be-exe-file ./docker/garden-be-exe-file 
 
 # prepare
 echo "-------------------- removing --------------------"
@@ -19,8 +21,8 @@ docker build -t garden_be .
 # depoly
 echo "-------------------- deploying --------------------"
 docker rm -f garden_be
-docker-compose up
+docker run -d -p 8018:8018 --name garden_be --restart=always garden_be
 
 # display
 echo "Checking health..."
-curl 127.0.0.1:8018/health
+curl localhost:8018/health
