@@ -26,4 +26,3 @@ nsq:
   nsq_producer_port: 4150 # tcp
   nsq_subscribe_host: "10.4.7.71"
   nsq_subscribe_port: 4150 # tcp
-
