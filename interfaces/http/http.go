@@ -8,6 +8,8 @@ import (
 
 func InitHttp(app *cmd.App) {
 	go func() {
-		router.Routers(app).Run(global.Gconfig.Server.Address) // 启动web
+		global.GLog.Infof("garden-be http 服务启动... 端口：%s，服务名：%s，模式：%s",
+			global.Gconfig.Server.Address, global.Gconfig.Server.ServerName, global.Gconfig.Server.Mode)
+		router.Routers(app).Run(global.Gconfig.Server.Address) // 启动 web
 	}()
 }

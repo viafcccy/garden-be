@@ -10,14 +10,21 @@ import (
 	"github.com/viafcccy/garden-be/interfaces/http/router/user"
 )
 
+type healthCheck struct {
+	IsHealth bool `json:"isHealth"`
+}
+
 func Routers(app *cmd.App) *gin.Engine {
 	Router := gin.Default()
 
 	// 健康检查
 	Router.GET("/health", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"code":    http.StatusOK,
-			"success": true,
+			"code":    0,
+			"message": "health check success",
+			"data": healthCheck{
+				IsHealth: true,
+			},
 		})
 	})
 

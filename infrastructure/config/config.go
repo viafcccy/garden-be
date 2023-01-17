@@ -68,7 +68,7 @@ func initConfig() *Config {
 		for !strings.HasSuffix(wd, "garden-be") {
 			wd = filepath.Dir(wd)
 		}
-		fileBytes, err := ioutil.ReadFile(fmt.Sprintf("%s/manifest/config/config.yaml", wd))
+		fileBytes, err := ioutil.ReadFile(fmt.Sprintf("%s/manifest/config/config_pro.yaml", wd))
 		if err != nil {
 			panic(fmt.Sprintf("load config.yaml failed: %v", err))
 		}
