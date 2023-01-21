@@ -5,9 +5,9 @@ import (
 )
 
 type Response struct {
-	Code int         `json:"code"` // 错误码
-	Msg  string      `json:"msg"`  // 错误描述
-	Data interface{} `json:"data"` // 返回数据
+	Code int         `json:"code"`    // 错误码
+	Msg  string      `json:"message"` // 错误描述
+	Data interface{} `json:"data"`    // 返回数据
 }
 
 // 自定义响应信息

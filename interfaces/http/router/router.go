@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"github.com/viafcccy/garden-be/cmd"
+	"github.com/viafcccy/garden-be/infrastructure/pkg/response"
 	"github.com/viafcccy/garden-be/interfaces/http/middleware"
 	"github.com/viafcccy/garden-be/interfaces/http/router/user"
 )
@@ -19,13 +20,9 @@ func Routers(app *cmd.App) *gin.Engine {
 
 	// 健康检查
 	Router.GET("/health", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"code":    0,
-			"message": "health check success",
-			"data": healthCheck{
-				IsHealth: true,
-			},
-		})
+		c.JSON(http.StatusOK, response.OK.WithData(healthCheck{
+			IsHealth: true,
+		}))
 	})
 
 	//配置跨域

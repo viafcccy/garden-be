@@ -19,7 +19,7 @@ func NewPublishClient() Publish {
 	return &publish{}
 }
 
-// PublishMsg 推送nsq消息
+// PublishMsg 推送 nsq 消息
 func (p *publish) PublishMsg(topic string, msg interface{}) (err error) {
 	var reqBodyByte []byte
 	reqBodyByte, err = json.Marshal(msg)
@@ -27,7 +27,7 @@ func (p *publish) PublishMsg(topic string, msg interface{}) (err error) {
 		global.GLog.Errorf("ERROR: nsqProducer json Marshal:%v\n", err)
 	}
 
-	// 发送nsq
+	// 发送 nsq
 	client := NewNsqClient()
 	cp, err := client.NsqProducer()
 	if err != nil {

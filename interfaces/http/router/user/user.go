@@ -11,8 +11,8 @@ func InitUserRouter(Router *gin.RouterGroup, app *cmd.App) {
 	hand := handler.UserHandler{
 		UserSrv: app.UserSrv,
 	}
-	UserRouter := Router.Group("user")
+	UserRouter := Router.Group("/user")
 	{
-		UserRouter.GET("getSimpleUserInfo", hand.ApiGetSimpleUser) // 查找用户
+		UserRouter.GET("/getSimpleUserInfo", hand.ApiGetSimpleUser) // 查找测试用户
 	}
 }

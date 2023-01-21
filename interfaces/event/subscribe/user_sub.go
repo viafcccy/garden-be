@@ -21,11 +21,11 @@ func UserSubDemo(app *cmd.App) {
 		jsonStr := string(bytes)
 		gResult := gjson.Get(jsonStr, "id")
 
-		// 在这里模拟你要处理的逻辑，处理你的业务，调用 application/service， application/service --> domain(event->subscribe)
+		// 在这里模拟你要处理的逻辑，处理你的业务，调用 application/service，application/service --> domain(event->subscribe)
 		userInfo, _ := app.UserSrv.GetSimpleUserInfo(context.Background(), &dto.SimpleUserInfoReq{
 			Id: uint64(gResult.Int()),
 		})
-		fmt.Println("从 nsq subscribe获取到的用户信息是 userInfo: ", userInfo)
+		fmt.Println("从 nsq subscribe 获取到的用户信息是 userInfo: ", userInfo)
 		return nil
 	})
 

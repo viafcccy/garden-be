@@ -14,18 +14,21 @@ type UserHandler struct {
 	UserSrv *service.UserService
 }
 
-// ApiGetSimpleUser 查询简单的用户信息 GET /user/123
+// ApiGetSimpleUser 查询测试用例用户信息 GET /api/v1/user/getSimpleUserInfo
 func (u *UserHandler) ApiGetSimpleUser(c *gin.Context) {
 	simpleUserReq := &dto.SimpleUserInfoReq{}
-	c.BindJSON(simpleUserReq) // 处理请求参数
+	// 处理请求参数
+	if err := c.ShouldBindQuery(simpleUserReq); err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrParam)
+		return
+	}
 
 	dtoSimpleUserInfo, err := u.UserSrv.GetSimpleUserInfo(c.Request.Context(), simpleUserReq)
 	if err != nil {
-		c.AbortWithError(http.StatusInternalServerError, err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, response.Err)
 		return
 	}
 
 	c.JSON(http.StatusOK, response.OK.WithData(dtoSimpleUserInfo))
 
-	return
 }

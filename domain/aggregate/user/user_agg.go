@@ -13,7 +13,7 @@ type UserAgg interface {
 
 var _ UserAgg = (*userAgg)(nil)
 
-// UserAgg 会有聚合：用户+用户日志
+// UserAgg 会有聚合：用户 + 用户日志
 type userAgg struct {
 	user        *entity.User
 	userLog     *entity.UserLog
@@ -21,7 +21,7 @@ type userAgg struct {
 	userRepoLog repository.IUserLogRepository
 }
 
-// AddUser 创建会员,创建的时候会增加日志
+// AddUser 创建会员，创建的时候会增加日志
 func (u *userAgg) AddUser(ctx context.Context) error {
 	entityUser, err := u.userRepo.SaveUser(ctx, u.user)
 	if err != nil {

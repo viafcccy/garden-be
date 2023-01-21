@@ -14,7 +14,7 @@ func NewUserREQ() *UserREQ {
 	return &UserREQ{}
 }
 
-// D2ESimpleUserInfo 将传入的 dto的SimpleUserInfoReq转成 entity.User
+// D2ESimpleUserInfo 将传入的 dto 的 SimpleUserInfoReq 转成 entity.User
 func (u *UserREQ) D2ESimpleUserInfo(dto *dto.SimpleUserInfoReq) *entity.User {
 	var userEntity entity.User
 

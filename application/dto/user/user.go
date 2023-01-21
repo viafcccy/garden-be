@@ -14,7 +14,6 @@ type (
 
 	UserInfo struct {
 		Id       uint64     `json:"id"`
-		Passport string     `json:"passport"`
 		Nickname string     `json:"nickname"`
 		Logs     []*UserLog `json:"logs"`
 	}
@@ -23,6 +22,6 @@ type (
 // 请求对象
 type (
 	SimpleUserInfoReq struct {
-		Id uint64 `json:"id"`
+		Id uint64 `form:"id" binding:"required"`
 	}
 )

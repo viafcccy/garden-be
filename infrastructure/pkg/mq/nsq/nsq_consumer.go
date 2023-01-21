@@ -48,8 +48,8 @@ func (s *consumer) SubscribeMsg(topic string, cmd func([]byte) error) error {
 	cc.AddHandler(handler)
 
 	address := client.GetNsqConsumerLink()
-	if err := cc.ConnectToNSQD(address); err != nil { // 直接连NSQD
-		//if err := cc.ConnectToNSQLookupd(address); err != nil { // 通过lookupd查询
+	if err := cc.ConnectToNSQD(address); err != nil { // 直接连 NSQD
+		//if err := cc.ConnectToNSQLookupd(address); err != nil { // 通过 lookupd 查询
 		return err
 	}
 
