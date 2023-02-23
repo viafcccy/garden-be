@@ -3,9 +3,10 @@ package entity
 import "time"
 
 type User struct {
-	ID        uint64     `json:"id"`
+	Id        uint64     `json:"id"`
+	UserName  string     `json:"userName"`
 	Password  string     `json:"Password"`
-	Nickname  string     `json:"nickname"`
+	NickName  string     `json:"nickName"`
 	CreatedAt time.Time  `json:"created_at"`
 	UpdatedAt time.Time  `json:"updated_at"`
 	DeletedAt *time.Time `json:"deleted_at"`

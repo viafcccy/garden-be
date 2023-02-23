@@ -44,11 +44,17 @@ type NsqConf struct {
 	NsqSubscribePort string `yaml:"nsq_subscribe_port"`
 }
 
+// jwt
+type Jwt struct {
+	Secret string `yaml:"secret"`
+}
+
 type Config struct {
 	Server ServerConf
 	Mysql  MysqlConf
 	Log    LogConf
 	Nsq    NsqConf
+	Jwt    Jwt
 }
 
 func NewConfig() (conf *Config) {

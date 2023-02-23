@@ -12,6 +12,7 @@ import (
 
 type UserHandler struct {
 	UserSrv *service.UserService
+	LogIn   *service.UserService
 }
 
 // ApiGetSimpleUser 查询测试用例用户信息 GET /api/v1/user/getSimpleUserInfo
@@ -19,7 +20,7 @@ func (u *UserHandler) ApiGetSimpleUser(c *gin.Context) {
 	simpleUserReq := &dto.SimpleUserInfoReq{}
 	// 处理请求参数
 	if err := c.ShouldBindQuery(simpleUserReq); err != nil {
-		c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrParam)
+		c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrInvalidParams)
 		return
 	}
 

@@ -12,19 +12,22 @@ package response
 
 var (
 	// OK
-	OK  = response(0, "ok")        // 通用成功
-	Err = response(500, "服务器内部错误") // 通用错误
+	OK               = response(0, "ok")     // 通用成功
+	Err              = response(500, "fail") // 通用错误
+	ErrInvalidParams = response(10101, "请求参数错误")
 
-	// 服务级错误码
-	ErrParam     = response(10001, "参数有误")
-	ErrSignParam = response(10002, "签名参数有误")
+	// 1 服务级错误码
+	// 01 token
+	ErrAuthCheckTokenFail    = response(10101, "Token 鉴权失败")
+	ErrAuthCheckTokenTimeout = response(10102, "Token 已超时")
+	ErrAuthToken             = response(10103, "Token 生成失败")
+	ErrAuth                  = response(10104, "Token 错误")
 
-	// 模块级错误码 - 用户模块
-	ErrUserService = response(20100, "用户服务异常")
-	ErrUserPhone   = response(20101, "用户手机号不合法")
-	ErrUserCaptcha = response(20102, "用户验证码有误")
-
-	// 库存模块
-	ErrOrderService = response(20200, "订单服务异常")
-	ErrOrderOutTime = response(20201, "订单超时")
+	// 2 模块级错误码
+	// 01 用户模块
+	ErrExistUserName = response(20101, "用户名已存在")
+	// 02 文章模块
+	ErrNotExistArticle = response(20201, "该文章不存在")
+	ErrExistTag        = response(20202, "已存在该标签名称")
+	ErrNotExistTag     = response(20203, "该标签不存在")
 )

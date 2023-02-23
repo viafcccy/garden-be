@@ -11,9 +11,10 @@ type UserConv struct {
 func E2PUser(user *entity.User) *po.User {
 	var poUser po.User
 
-	poUser.ID = user.ID
+	poUser.Id = user.Id
+	poUser.UserName = user.UserName
 	poUser.Password = user.Password
-	poUser.Nickname = user.Nickname
+	poUser.NickName = user.NickName
 	poUser.CreatedAt = user.CreatedAt
 
 	return &poUser
@@ -22,9 +23,10 @@ func E2PUser(user *entity.User) *po.User {
 func P2EUser(user *po.User) *entity.User {
 	var enUser entity.User
 
-	enUser.ID = user.ID
+	enUser.Id = user.Id
+	enUser.UserName = user.UserName
 	enUser.Password = user.Password
-	enUser.Nickname = user.Nickname
+	enUser.NickName = user.NickName
 	enUser.CreatedAt = user.CreatedAt
 	enUser.UpdatedAt = user.UpdatedAt
 	enUser.DeletedAt = user.DeletedAt

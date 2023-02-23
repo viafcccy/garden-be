@@ -4,18 +4,7 @@ package dto
 type (
 	SimpleUserInfo struct {
 		Id       uint64 `json:"id"`
-		Nickname string `json:"nickname"`
-	}
-
-	UserLog struct {
-		Id  uint64 `json:"log_id"`
-		Log string `json:"log"`
-	}
-
-	UserInfo struct {
-		Id       uint64     `json:"id"`
-		Nickname string     `json:"nickname"`
-		Logs     []*UserLog `json:"logs"`
+		NickName string `json:"nickName"`
 	}
 )
 

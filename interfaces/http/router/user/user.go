@@ -13,6 +13,7 @@ func InitUserRouter(Router *gin.RouterGroup, app *cmd.App) {
 	}
 	UserRouter := Router.Group("/user")
 	{
-		UserRouter.GET("/getSimpleUserInfo", hand.ApiGetSimpleUser) // 查找测试用户
+		// UserRouter.GET("/getSimpleUserInfo", hand.ApiGetSimpleUser) // 测试接口：查找 id=1 的用户
+		UserRouter.GET("/login", hand.ApiGetSimpleUser) // 查找测试用户
 	}
 }

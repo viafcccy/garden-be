@@ -22,7 +22,7 @@ func (u *UserServer) FindSimpleUser(ctx context.Context, request *proto.FindSimp
 
 	rest := proto.FindSimpleUserReply{
 		Id:       dtoSimpleUserInfo.Id,
-		Nickname: dtoSimpleUserInfo.Nickname,
+		Nickname: dtoSimpleUserInfo.NickName,
 	}
 
 	return &rest, nil

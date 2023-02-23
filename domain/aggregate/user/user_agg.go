@@ -29,8 +29,8 @@ func (u *userAgg) AddUser(ctx context.Context) error {
 
 	}
 
-	u.userLog.UserId = entityUser.ID
-	u.userLog.Log = "创建用户" + entityUser.Nickname
+	u.userLog.UserId = entityUser.Id
+	u.userLog.Log = "创建用户" + entityUser.NickName
 	_, err = u.userRepoLog.SaveLog(ctx, u.userLog)
 	if err != nil {
 		return err

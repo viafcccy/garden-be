@@ -18,7 +18,7 @@ func NewUserREQ() *UserREQ {
 func (u *UserREQ) D2ESimpleUserInfo(dto *dto.SimpleUserInfoReq) *entity.User {
 	var userEntity entity.User
 
-	userEntity.ID = dto.Id
+	userEntity.Id = dto.Id
 
 	return &userEntity
 }

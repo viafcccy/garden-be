@@ -1,5 +1,5 @@
-# docker 生产环境部署配置文件，使用时更改名称为 config_pro.yaml
-# ./deploy
+# 本地测试配置文件，使用时更改名称为 config_pro.yaml
+# go run main.go
 # HTTP Server.
 server:
   address: ":8018"
@@ -13,7 +13,7 @@ mysql:
   # if run in container using 'container name or ip'
   dbHost: "mysql"
   dbPort: 3306
-  dbName: "garden_be"
+  dbName: "app_db"
 
 # Log.
 log:
