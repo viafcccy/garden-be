@@ -45,16 +45,38 @@ type NsqConf struct {
 }
 
 // jwt
-type Jwt struct {
+type JwtConf struct {
 	Secret string `yaml:"secret"`
 }
 
+// image
+type ImageConf struct {
+	RuntimeRootPath string   `yaml:"runtime_root_path"`
+	ImagePrefixUrl  string   `yaml:"image_prefix_url"`
+	ImageSavePath   string   `yaml:"image_save_path"`
+	ImageMaxSize    int      `yaml:"image_max_size"`
+	ImageAllowExts  []string `yaml:"image_allow_exts"`
+}
+
+// app
+type AppConf struct {
+	RunMode string `yaml:"run_mode"`
+}
+
+// UserPassword
+type UserPasswordConf struct {
+	Salt string `yaml:"salt"`
+}
+
 type Config struct {
-	Server ServerConf
-	Mysql  MysqlConf
-	Log    LogConf
-	Nsq    NsqConf
-	Jwt    Jwt
+	Server       ServerConf
+	Mysql        MysqlConf
+	Log          LogConf
+	Nsq          NsqConf
+	Jwt          JwtConf
+	Image        ImageConf
+	App          AppConf
+	UserPassword UserPasswordConf
 }
 
 func NewConfig() (conf *Config) {

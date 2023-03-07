@@ -8,14 +8,15 @@ import (
 	"github.com/jinzhu/gorm"
 
 	entity "github.com/viafcccy/garden-be/domain/entity/user"
-	userRepository "github.com/viafcccy/garden-be/domain/irepository/user"
+	userRepository "github.com/viafcccy/garden-be/domain/repository/user"
 	"github.com/viafcccy/garden-be/global"
 	"github.com/viafcccy/garden-be/infrastructure/consts"
-	converter "github.com/viafcccy/garden-be/infrastructure/repository/converter/user"
-	po "github.com/viafcccy/garden-be/infrastructure/repository/po/user"
+	converter "github.com/viafcccy/garden-be/infrastructure/persistence/converter/user"
+	po "github.com/viafcccy/garden-be/infrastructure/persistence/po/user"
 )
 
-var _ userRepository.IUserRepository = (*UserDao)(nil)
+// 检查是否实现 userRepository.UserRepository 接口
+var _ userRepository.UserRepository = (*UserDao)(nil)
 
 type UserDao struct {
 	db *gorm.DB
@@ -48,6 +49,24 @@ func (u *UserDao) GetUser(ctx context.Context, id uint64) (*entity.User, error) 
 		poUser po.User
 	)
 	err := u.db.First(&poUser, id).Error
+	if err != nil {
+		global.GLog.Errorln(err.Error())
+		return nil, err
+	}
+
+	if gorm.IsRecordNotFoundError(err) {
+		return nil, errors.New("food not found")
+	}
+
+	enUser := converter.P2EUser(&poUser)
+	return enUser, nil
+}
+
+func (u *UserDao) GetUserByUserName(userName string) (*entity.User, error) {
+	var (
+		poUser po.User
+	)
+	err := u.db.First(&poUser, po.User{UserName: userName}).Error
 	if err != nil {
 		global.GLog.Errorln(err.Error())
 		return nil, err

@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,7 +25,32 @@ func (u *UserHandler) ApiGetSimpleUser(c *gin.Context) {
 		return
 	}
 
+	// 测试专用接口，保护内部安全
+	if simpleUserReq.Id > 1 {
+		c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrInvalidParams)
+	}
+
 	dtoSimpleUserInfo, err := u.UserSrv.GetSimpleUserInfo(c.Request.Context(), simpleUserReq)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusInternalServerError, response.Err)
+		return
+	}
+
+	c.JSON(http.StatusOK, response.OK.WithData(dtoSimpleUserInfo))
+
+}
+
+// ApiLogin
+func (u *UserHandler) ApiLogin(c *gin.Context) {
+	req := &dto.LoginReq{}
+	// 处理请求参数
+	if err := c.ShouldBindJSON(req); err != nil {
+		fmt.Println(err)
+		c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrInvalidParams)
+		return
+	}
+
+	dtoSimpleUserInfo, err := u.UserSrv.Login(c.Request.Context(), req)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, response.Err)
 		return

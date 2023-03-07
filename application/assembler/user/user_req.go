@@ -15,10 +15,19 @@ func NewUserREQ() *UserREQ {
 }
 
 // D2ESimpleUserInfo 将传入的 dto 的 SimpleUserInfoReq 转成 entity.User
-func (u *UserREQ) D2ESimpleUserInfo(dto *dto.SimpleUserInfoReq) *entity.User {
+func (o *UserREQ) D2ESimpleUserInfo(dto *dto.SimpleUserInfoReq) *entity.User {
 	var userEntity entity.User
 
 	userEntity.Id = dto.Id
+
+	return &userEntity
+}
+
+func (o *UserREQ) D2ELogin(dto *dto.LoginReq) *entity.User {
+	var userEntity entity.User
+
+	userEntity.UserName = dto.UserName
+	userEntity.RawPassword = dto.Password
 
 	return &userEntity
 }

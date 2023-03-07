@@ -2,12 +2,13 @@ package converter
 
 import (
 	entity "github.com/viafcccy/garden-be/domain/entity/user"
-	po "github.com/viafcccy/garden-be/infrastructure/repository/po/user"
+	po "github.com/viafcccy/garden-be/infrastructure/persistence/po/user"
 )
 
 type UserConv struct {
 }
 
+// Entity 2 PO
 func E2PUser(user *entity.User) *po.User {
 	var poUser po.User
 
@@ -20,6 +21,7 @@ func E2PUser(user *entity.User) *po.User {
 	return &poUser
 }
 
+// PO 2 Entity
 func P2EUser(user *po.User) *entity.User {
 	var enUser entity.User
 

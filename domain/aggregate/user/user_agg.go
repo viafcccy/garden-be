@@ -4,7 +4,7 @@ import (
 	"context"
 
 	entity "github.com/viafcccy/garden-be/domain/entity/user"
-	repository "github.com/viafcccy/garden-be/domain/irepository/user"
+	repository "github.com/viafcccy/garden-be/domain/repository/user"
 )
 
 type UserAgg interface {
@@ -17,8 +17,8 @@ var _ UserAgg = (*userAgg)(nil)
 type userAgg struct {
 	user        *entity.User
 	userLog     *entity.UserLog
-	userRepo    repository.IUserRepository
-	userRepoLog repository.IUserLogRepository
+	userRepo    repository.UserRepository
+	userRepoLog repository.UserLogRepository
 }
 
 // AddUser 创建会员，创建的时候会增加日志

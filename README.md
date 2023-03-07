@@ -95,4 +95,19 @@ infrastructure/config/config.go 注意文件路径修改
 - 直接运行：go run main.go
 - 编译：go build
 
+tips:
+通过 DDD 可以对中台和微服务起到承上启下作用，中台是更偏业务角度考虑，DDD 通过领域建模拆解、划分业务领域边界，指导微服务的落地。在使用 DDD 过程中有一些注意点也需要关注下：
+
+DDD 适合偏复杂业务，DDD 不是万能的。简单业务使用 DDD 会有些杀鸡用牛刀感觉（思考架构三原则：简单、合适、演进），不要拿着 DDD 这个锤子到处找钉子；
+DDD 分层建议采用严格分层，不跨层调用，而是采用依赖注入方式把相关实例传入下层（例如不要从接口层直接调用存储层方法，因为跨层调用会导致整个调用链变复杂）；
+DDD 目录结构命名，这块也是比较关键一点。目前 Go 是倾向简洁，不希望向 Java 那么冗余，所以这块命名还可以在 DEMO 基础上进一步优化；
+DDD 分层会接口一多，代码可读性不好的问题。可以通过好的命名来规避（比如统一后缀、选取合适简短的接口名），同时用依赖倒置思维逐层看接口，以及其依赖；
+DDD 设计步骤，可以按领域层 -> 基础层 -> 应用层 -> 接口层，一般是按这个步骤开发；
+DDD 分层后，每层隔离得比较干净，非常适合单元测试和 Mock 测试（可以参考文末 food-app-server 这个仓库）
+
 reference: https://github.com/jettjia/go-ddd
+
+STYLEGUIDE.md 部分参考：
+https://zhuanlan.zhihu.com/p/91525839
+https://tech.meituan.com/2017/12/22/ddd-in-practice.html
+https://tkstorm.com/posts-list/cloud-native/ddd-layer/

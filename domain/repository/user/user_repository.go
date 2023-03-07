@@ -1,4 +1,4 @@
-package irepository
+package repository
 
 import (
 	"context"
@@ -7,7 +7,8 @@ import (
 )
 
 //go:generate mockgen --source ./Iuser_repository.go --destination ./mock/mock_user.go --package mock
-type IUserRepository interface {
+type UserRepository interface {
 	SaveUser(ctx context.Context, user *entity.User) (*entity.User, error)
 	GetUser(ctx context.Context, id uint64) (*entity.User, error)
+	GetUserByUserName(userName string) (*entity.User, error)
 }
