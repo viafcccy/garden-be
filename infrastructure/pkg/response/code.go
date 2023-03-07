@@ -25,7 +25,8 @@ var (
 
 	// 2 模块级错误码
 	// 01 用户模块
-	ErrExistUserName = response(20101, "用户名已存在")
+	ErrExistUserName     = response(20101, "用户名已存在")
+	ErrLoginFailWrongPwd = response(20102, "用户密码错误")
 	// 02 文章模块
 	ErrNotExistArticle = response(20201, "该文章不存在")
 	ErrExistTag        = response(20202, "已存在该标签名称")

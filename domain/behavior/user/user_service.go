@@ -8,6 +8,7 @@ import (
 	repository "github.com/viafcccy/garden-be/domain/repository/user"
 	"github.com/viafcccy/garden-be/global"
 	dao "github.com/viafcccy/garden-be/infrastructure/persistence/repositoryimpl/user"
+	"github.com/viafcccy/garden-be/infrastructure/pkg/errno"
 )
 
 // UserService user service interface
@@ -46,14 +47,14 @@ func (u *userService) Login(userName string, rawPwd string) (userE *entity.User,
 	// 校验密码 加盐规则
 	sha3Pwd := dongle.Encrypt.FromString(global.Gconfig.UserPassword.Salt + rawPwd).BySha3(512).ToHexString()
 	if sha3Pwd == userE.Password {
-		userE.SuccessLog = true
+		// 登录态 用户拼装
+		userE.SuccessLogin = true
+		userE.Token = "testToken"
+
 		return userE, nil
 	}
 
-	// 登录态 用户拼装
-	// toke 生成
-	userE.Token = "testToken"
-	userE.SuccessLog = false
-
-	return userE, nil
+	// 密码不一致 登录失败
+	userE.SuccessLogin = false
+	return userE, errno.ErrLogFailWrongPwd
 }

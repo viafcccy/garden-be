@@ -2,12 +2,24 @@ package response
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 type Response struct {
 	Code int         `json:"code"`    // 错误码
 	Msg  string      `json:"message"` // 错误描述
 	Data interface{} `json:"data"`    // 返回数据
+}
+
+// 根据错误判断是否有预设响应信息，若无直接返回 err
+func ResponseByErr(err error) Response {
+	res, ok := ERR_RSP_MAP[err]
+	if ok {
+		// 如果有预设，直接返回
+		return *res
+	} else {
+		return Err.WithMsg(fmt.Sprint(err))
+	}
 }
 
 // 自定义响应信息

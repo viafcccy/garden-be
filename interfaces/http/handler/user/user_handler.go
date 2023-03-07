@@ -52,7 +52,7 @@ func (u *UserHandler) ApiLogin(c *gin.Context) {
 
 	dtoSimpleUserInfo, err := u.UserSrv.Login(c.Request.Context(), req)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, response.Err)
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response.ResponseByErr(err))
 		return
 	}
 
