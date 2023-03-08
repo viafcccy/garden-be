@@ -29,6 +29,7 @@ func Routers(app *cmd.App) *gin.Engine {
 
 	//配置跨域
 	Router.Use(middleware.Cors())
+	Router.Use(middleware.Jwt())
 
 	ApiGroup := Router.Group("/api/v1")
 	user.InitUserRouter(ApiGroup, app) //注入用户模块

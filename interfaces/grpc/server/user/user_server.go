@@ -2,6 +2,7 @@ package user
 
 import (
 	"context"
+	"log"
 
 	dto "github.com/viafcccy/garden-be/application/dto/user"
 	"github.com/viafcccy/garden-be/interfaces/grpc/proto"
@@ -10,7 +11,7 @@ import (
 )
 
 func (u *UserServer) FindSimpleUser(ctx context.Context, request *proto.FindSimpleUserRequest) (*proto.FindSimpleUserReply, error) {
-	//fmt.Println("i am in......")
+	log.Println("i am in......")
 	simpleUserReq := &dto.SimpleUserInfoReq{}
 	simpleUserReq.Id = request.Id
 

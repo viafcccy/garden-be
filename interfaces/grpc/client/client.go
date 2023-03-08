@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"fmt"
+	"log"
 
 	"google.golang.org/grpc"
 
@@ -19,5 +19,5 @@ func main() {
 		&proto.FindSimpleUserRequest{Id: 1},
 	)
 
-	fmt.Println(rsp.Nickname)
+	log.Println(rsp.Nickname)
 }

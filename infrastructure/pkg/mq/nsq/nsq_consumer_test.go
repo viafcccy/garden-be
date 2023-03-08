@@ -1,7 +1,7 @@
 package nsq
 
 import (
-	"fmt"
+	"log"
 	"testing"
 	"time"
 )
@@ -10,7 +10,7 @@ func TestNsq_Consumer(t *testing.T) {
 	client := NewConsumerClient()
 	err := client.SubscribeMsg("test_topic", func(bytes []byte) error {
 		// 输出 nsq 中的消息
-		fmt.Println(string(bytes))
+		log.Println(string(bytes))
 
 		return nil
 	})

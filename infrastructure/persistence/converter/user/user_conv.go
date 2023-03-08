@@ -14,7 +14,7 @@ func E2PUser(user *entity.User) *po.User {
 
 	poUser.Id = user.Id
 	poUser.UserName = user.UserName
-	poUser.Password = user.Password
+	poUser.Password = user.RawPassword
 	poUser.NickName = user.NickName
 	poUser.CreatedAt = user.CreatedAt
 
@@ -27,11 +27,15 @@ func P2EUser(user *po.User) *entity.User {
 
 	enUser.Id = user.Id
 	enUser.UserName = user.UserName
-	enUser.Password = user.Password
 	enUser.NickName = user.NickName
+	enUser.ShaPassword = user.Password
 	enUser.CreatedAt = user.CreatedAt
 	enUser.UpdatedAt = user.UpdatedAt
 	enUser.DeletedAt = user.DeletedAt
+
+	enUser.RawPassword = ""
+	enUser.Token = ""
+	enUser.SuccessLogin = false
 
 	return &enUser
 }

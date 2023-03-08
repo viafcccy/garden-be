@@ -2,6 +2,7 @@ package mysql
 
 import (
 	"fmt"
+	"log"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -61,6 +62,6 @@ func (logger *MyLogger) Print(values ...interface{}) {
 
 	if level == "sql" {
 		logStr := fmt.Sprintf("%s", doTime) + " " + source + " " + sql
-		fmt.Println(logStr)
+		log.Println(logStr)
 	}
 }

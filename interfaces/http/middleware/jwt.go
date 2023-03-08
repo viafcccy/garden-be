@@ -13,10 +13,20 @@ import (
 func Jwt() gin.HandlerFunc {
 	return func(c *gin.Context) {
 
-		token := c.Query("token")
+		// login api
+		if c.Request.URL.Path == "/api/v1/user/login" {
+			// 前置 进入下一个中间件
+			c.Next()
+			// 后置 再次回来时直接销毁函数
+			return
+		}
+
+		// 其它 api
+		// 前置
+		token := c.Request.Header.Get("token")
 		// 未携带 token
 		if token == "" {
-			c.AbortWithStatusJSON(http.StatusBadRequest, response.ErrInvalidParams)
+			c.AbortWithStatusJSON(http.StatusForbidden, response.ErrNotCarryToken)
 		} else {
 			claims, err := myJwt.ParseJwtToken(token)
 			// 验证失败
@@ -29,5 +39,6 @@ func Jwt() gin.HandlerFunc {
 		}
 
 		c.Next()
+		// 后置 ...
 	}
 }

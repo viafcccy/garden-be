@@ -2,7 +2,7 @@ package nsq
 
 import (
 	"context"
-	"fmt"
+	"log"
 
 	"github.com/tidwall/gjson"
 
@@ -25,7 +25,7 @@ func UserSubDemo(app *cmd.App) {
 		userInfo, _ := app.UserSrv.GetSimpleUserInfo(context.Background(), &dto.SimpleUserInfoReq{
 			Id: uint64(gResult.Int()),
 		})
-		fmt.Println("从 nsq subscribe 获取到的用户信息是 userInfo: ", userInfo)
+		log.Println("从 nsq subscribe 获取到的用户信息是 userInfo: ", userInfo)
 		return nil
 	})
 

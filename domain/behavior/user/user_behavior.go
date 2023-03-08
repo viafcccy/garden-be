@@ -9,6 +9,7 @@ import (
 	"github.com/viafcccy/garden-be/global"
 	dao "github.com/viafcccy/garden-be/infrastructure/persistence/repositoryimpl/user"
 	"github.com/viafcccy/garden-be/infrastructure/pkg/errno"
+	myJwt "github.com/viafcccy/garden-be/infrastructure/pkg/jwt"
 )
 
 // UserService user service interface
@@ -45,11 +46,18 @@ func (u *userService) Login(userName string, rawPwd string) (userE *entity.User,
 	}
 
 	// 校验密码 加盐规则
-	sha3Pwd := dongle.Encrypt.FromString(global.Gconfig.UserPassword.Salt + rawPwd).BySha3(512).ToHexString()
-	if sha3Pwd == userE.Password {
+	sha3Pwd := dongle.Encrypt.FromString(rawPwd + global.Gconfig.App.UserPwdSalt).BySha3(512).ToHexString()
+	if sha3Pwd == userE.ShaPassword {
+		// 生成 token
+		tokenString, err := myJwt.GenerateJwtToken(userE.UserName)
+		if err != nil {
+			return nil, err
+		}
+
 		// 登录态 用户拼装
+		userE.RawPassword = rawPwd
+		userE.Token = tokenString
 		userE.SuccessLogin = true
-		userE.Token = "testToken"
 
 		return userE, nil
 	}

@@ -1,7 +1,7 @@
 package config
 
 import (
-	"fmt"
+	"log"
 	"testing"
 
 	"github.com/viafcccy/garden-be/global"
@@ -13,5 +13,5 @@ func TestNewConfig(t *testing.T) {
 	if global.Gconfig.Server.Address == "" {
 		t.Fatal("error: 请在 config.yaml 中配置端口号")
 	}
-	fmt.Println(global.Gconfig.Server.Address)
+	log.Println(global.Gconfig.Server.Address)
 }

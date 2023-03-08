@@ -22,6 +22,7 @@ var (
 	ErrAuthCheckTokenTimeout = response(10102, "Token 已超时")
 	ErrAuthToken             = response(10103, "Token 生成失败")
 	ErrAuth                  = response(10104, "Token 错误")
+	ErrNotCarryToken         = response(10105, "未携带 Token 请求")
 
 	// 2 模块级错误码
 	// 01 用户模块

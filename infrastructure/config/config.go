@@ -60,23 +60,18 @@ type ImageConf struct {
 
 // app
 type AppConf struct {
-	RunMode string `yaml:"run_mode"`
-}
-
-// UserPassword
-type UserPasswordConf struct {
-	Salt string `yaml:"salt"`
+	RunMode     string `yaml:"run_mode"`
+	UserPwdSalt string `yaml:"user_pwd_salt"`
 }
 
 type Config struct {
-	Server       ServerConf
-	Mysql        MysqlConf
-	Log          LogConf
-	Nsq          NsqConf
-	Jwt          JwtConf
-	Image        ImageConf
-	App          AppConf
-	UserPassword UserPasswordConf
+	Server ServerConf `yaml:"server"`
+	Mysql  MysqlConf  `yaml:"mysql"`
+	Log    LogConf    `yaml:"log"`
+	Nsq    NsqConf    `yaml:"nsq"`
+	Jwt    JwtConf    `yaml:"jwt"`
+	Image  ImageConf  `yaml:"imgae"`
+	App    AppConf    `yaml:"app"`
 }
 
 func NewConfig() (conf *Config) {

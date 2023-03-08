@@ -1,7 +1,7 @@
 package nsq
 
 import (
-	"fmt"
+	"log"
 	"testing"
 
 	"github.com/viafcccy/garden-be/infrastructure/pkg/mq/nsq"
@@ -22,5 +22,5 @@ func TestNsq_NewNsqProducer(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fmt.Println("ping nsq success")
+	log.Println("ping nsq success")
 }
